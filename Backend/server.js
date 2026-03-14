@@ -8,9 +8,10 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 console.log("Checking API Key...", process.env.GEMINI_API_KEY ? "✅ Found" : "❌ Not Found");
+console.log("Environment:", process.env.NODE_ENV || "development");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -163,3 +164,6 @@ ONLY pure JSON.
 app.listen(port, () => {
   console.log(`✅ Server running on http://localhost:${port}`);
 });
+
+// Export for Vercel
+module.exports = app;
