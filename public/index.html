@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Events Finder</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(to right, #4f46e5, #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .custom-select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-indigo-50 min-h-screen">
+  <!-- Header/Navigation -->
+  <nav class="bg-white shadow-md backdrop-blur-lg bg-opacity-80 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-calendar-alt text-indigo-600 text-2xl"></i>
+          <span class="text-2xl font-bold gradient-text">EventAI</span>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">Home</a>
+          <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">Browse Events</a>
+          <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">For Organizers</a>
+          <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">Contact</a>
+        </div>
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="#" class="px-3 py-2 text-indigo-600 font-medium hover:text-indigo-800 transition">Login</a>
+          <a href="#" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition shadow-md hover:shadow-lg">Sign Up</a>
+        </div>
+        <div class="md:hidden">
+          <button class="text-gray-700">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="container mx-auto px-6 py-12">
+    <div class="relative mb-12">
+      <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl filter blur-xl opacity-15"></div>
+      <div class="relative bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center gradient-text"> 
+          AI Powered Events and Conferences Finder
+        </h1>
+        <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-8">
+          Discover and connect with the best technology events, meetups and conferences happening in your area
+        </p>
+
+        <!-- Dropdowns to select state and city -->
+        <div class="flex flex-col md:flex-row justify-center mb-8 space-y-6 md:space-y-0 md:space-x-6">
+          <div class="w-full md:w-auto">
+            <label for="state" class="block text-lg font-medium text-gray-700 mb-2">Select State</label>
+            <div class="relative">
+              <select id="state" class="custom-select appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm">
+                <option value="">Select State</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Assam">Assam</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Goa">Goa</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="w-full md:w-auto">
+            <label for="city" class="block text-lg font-medium text-gray-700 mb-2">Select City</label>
+            <div class="relative">
+              <select id="city" class="custom-select appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm" disabled>
+                <option value="">Select City</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button to fetch events -->
+        <div class="text-center">
+          <button id="fetch-events" class="relative px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transition transform hover:-translate-y-1 hover:scale-105 duration-300" disabled>
+            <i class="fas fa-search mr-2"></i>
+            Find Events
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display events here -->
+    <div id="events-container" class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Events will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Why Choose TechEvents</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-search text-indigo-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Comprehensive Search</h3>
+          <p class="text-gray-600">Find events by technology, location, date, or format. Our advanced filters help you discover exactly what you're looking for.</p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-users text-indigo-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Community Verified</h3>
+          <p class="text-gray-600">Events are reviewed and rated by tech professionals like you, ensuring quality experiences and valuable networking.</p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300">
+          <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-bell text-indigo-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Personalized Alerts</h3>
+          <p class="text-gray-600">Get notifications about upcoming events that match your interests, tech stack, and preferred locations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">TechEvents</h3>
+          <p class="text-gray-400">Connecting the tech community through meaningful events and conferences.</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Browse Events</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">For Organizers</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+          <p class="text-gray-400 mb-4">Stay updated with the latest tech events</p>
+          <div class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 TechEvents. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // City data for each state
+    const citiesByState = {
+      "Karnataka": ["Bengaluru", "Mysuru", "Hubli", "Mangalore", "Belagavi"],
+      "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane"],
+      "Delhi": ["Delhi"],
+      "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Trichy", "Salem"],
+      "West Bengal": ["Kolkata", "Durgapur", "Siliguri", "Asansol", "Howrah"],
+      "Telangana": ["Hyderabad", "Warangal", "Khammam", "Nizamabad", "Karimnagar"],
+      "Uttar Pradesh": ["Lucknow", "Kanpur", "Agra", "Varanasi", "Ghaziabad"],
+      "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"],
+      "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer"],
+      "Madhya Pradesh": ["Indore", "Bhopal", "Gwalior", "Jabalpur", "Ujjain"],
+      "Punjab": ["Chandigarh", "Amritsar", "Ludhiana", "Jalandhar", "Patiala"],
+      "Haryana": ["Chandigarh", "Gurugram", "Faridabad", "Ambala", "Panipat"],
+      "Uttarakhand": ["Dehradun", "Haridwar", "Rishikesh", "Nainital", "Haldwani"],
+      "Himachal Pradesh": ["Shimla", "Manali", "Kullu", "Solan", "Mandi"],
+      "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Purnia"],
+      "Kerala": ["Kochi", "Thiruvananthapuram", "Kozhikode", "Kottayam", "Thrissur"],
+      "Odisha": ["Bhubaneswar", "Cuttack", "Berhampur", "Rourkela", "Sambalpur"],
+      "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati", "Kurnool"],
+      "Chhattisgarh": ["Raipur", "Bilaspur", "Korba", "Durg", "Rajnandgaon"],
+      "Assam": ["Guwahati", "Dibrugarh", "Jorhat", "Silchar", "Nagaon"],
+      "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Deoghar"],
+      "Goa": ["Panaji", "Vasco da Gama", "Margao", "Mapusa"],
+    };
+
+    // Update the city dropdown based on the selected state
+    document.getElementById('state').addEventListener('change', function() {
+      const state = this.value;
+      const cityDropdown = document.getElementById('city');
+      const fetchButton = document.getElementById('fetch-events');
+      
+      // Clear previous city options
+      cityDropdown.innerHTML = '<option value="">Select City</option>';
+
+      if (state && citiesByState[state]) {
+        // Enable the city dropdown and populate cities for the selected state
+        citiesByState[state].forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = city;
+          cityDropdown.appendChild(option);
+        });
+        cityDropdown.disabled = false;
+        fetchButton.disabled = false;
+      } else {
+        cityDropdown.disabled = true;
+        fetchButton.disabled = true;
+      }
+    });
+
+    // Fetch events when the "Find Events" button is clicked
+    document.getElementById('fetch-events').addEventListener('click', async function() {
+      const city = document.getElementById('city').value;
+      const state = document.getElementById('state').value;
+
+      // Show loading state
+      document.getElementById('events-container').innerHTML = `
+        <div class="col-span-full flex justify-center items-center py-12">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        </div>
+      `;
+
+      try {
+        const response = await fetch('http://localhost:3000/api/gemini-events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ city, state }),
+        });
+
+        const data = await response.json();
+
+        if (data.events && data.events.length > 0) {
+          let eventsHTML = '';
+          data.events.forEach(event => {
+            // Generate random color for the event category badge
+            const categoryColors = [
+              'bg-indigo-100 text-indigo-800',
+              'bg-purple-100 text-purple-800',
+              'bg-blue-100 text-blue-800',
+              'bg-green-100 text-green-800',
+              'bg-red-100 text-red-800'
+            ];
+            const randomColor = categoryColors[Math.floor(Math.random() * categoryColors.length)];
+            
+            // Generate random badge text
+            const categories = ['Conference', 'Workshop', 'Meetup', 'Hackathon', 'Webinar'];
+            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+            
+            eventsHTML += `
+              <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 card-hover">
+                <div class="relative">
+                  <img src="${event.image}" alt="${event.title}" class="w-full h-48 object-cover">
+                  <div class="absolute top-4 right-4 ${randomColor} px-3 py-1 rounded-full text-sm font-bold">
+                    ${randomCategory}
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2">${event.title}</h3>
+                  <div class="flex items-center text-gray-600 mb-3">
+                    <i class="far fa-calendar-alt mr-2"></i>
+                    <span>${event.date}</span>
+                  </div>
+                  <div class="flex items-center text-gray-600 mb-4">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>${event.location}</span>
+                  </div>
+                  <p class="text-gray-600 mb-6 line-clamp-3">${event.description}</p>
+                  <div class="flex justify-between items-center">
+                    <a href="${event.website}" target="_blank" rel="noopener noreferrer"
+                      class="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition duration-300 shadow-md hover:shadow-lg">
+                      Register Now
+                    </a>
+                    <button class="text-indigo-600 hover:text-indigo-800">
+                      <i class="far fa-bookmark text-xl"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          document.getElementById('events-container').innerHTML = eventsHTML;
+        } else {
+          document.getElementById('events-container').innerHTML = `
+            <div class="col-span-full bg-white p-8 rounded-xl shadow text-center">
+              <i class="fas fa-calendar-times text-4xl text-gray-400 mb-4"></i>
+              <p class="text-xl text-gray-600">No events found in this location.</p>
+              <p class="text-gray-500 mt-2">Try selecting a different city or state.</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        document.getElementById('events-container').innerHTML = `
+          <div class="col-span-full bg-white p-8 rounded-xl shadow text-center">
+            <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-4"></i>
+            <p class="text-xl text-gray-700">There was an error fetching events.</p>
+            <p class="text-gray-600 mt-2">Please try again later or contact support if the problem persists.</p>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
