@@ -5,6 +5,10 @@
       "src": "Backend/server.js",
       "use": "@vercel/node",
       "config": { "includeFiles": "Backend/**" }
+    },
+    {
+      "src": "public/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -13,11 +17,7 @@
       "dest": "Backend/server.js"
     },
     {
-      "src": "^/(?!api/).*",
-      "dest": "public/$1"
-    },
-    {
-      "src": "/",
+      "src": "/.*",
       "dest": "public/index.html"
     }
   ]
