@@ -274,7 +274,8 @@
       `;
 
       try {
-        const response = await fetch('http://localhost:3000/api/gemini-events', {
+        const apiUrl = window.location.origin + '/api/gemini-events';
+        const response = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ city, state }),
